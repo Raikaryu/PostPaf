@@ -1,0 +1,24 @@
+<div class="home-container">
+  <div class="header">
+    <h1>PostPaf</h1>
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="search bar"
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="search()">
+      <button class="search-button" (click)="search()">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="posts-container">
+    <app-post-item
+      *ngFor="let post of posts"
+      [post]="post">
+    </app-post-item>
+  </div>
+</div>
+
+<app-bottom-nav></app-bottom-nav>

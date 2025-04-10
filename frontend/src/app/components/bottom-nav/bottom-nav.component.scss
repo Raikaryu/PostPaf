@@ -1,0 +1,33 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  background-color: white;
+  border-top: 1px solid #e0e0e0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  height: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover, &.active {
+    background-color: #f5f5f5;
+  }
+
+  i {
+    font-size: 1.5rem;
+    color: #333;
+  }
+}

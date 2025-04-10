@@ -1,0 +1,23 @@
+<div class="post-card">
+  <div class="post-header">
+    <div class="author-info">
+      <div class="author-avatar" *ngIf="post.user?.photo">
+        <img [src]="post.user.photo" alt="Photo de profil">
+      </div>
+      <span class="author-name">{{ post.user?.username || 'Utilisateur' }}</span>
+    </div>
+  </div>
+
+  <div class="post-body">
+    <h3 class="post-title">{{ post.title }}</h3>
+    <p class="post-content">{{ post.content }}</p>
+  </div>
+
+  <div class="post-footer">
+    <div class="post-date">{{ post.createdAt | date:'short' }}</div>
+    <div class="post-actions">
+      <button class="action-btn edit-btn" (click)="editPost()">Modifier</button>
+      <button class="action-btn delete-btn" (click)="deletePost()">Supprimer</button>
+    </div>
+  </div>
+</div>
