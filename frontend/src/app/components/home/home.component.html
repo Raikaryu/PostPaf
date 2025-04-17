@@ -22,7 +22,7 @@
     <!-- Message d'erreur -->
     <div *ngIf="error && !isLoading" class="error-message">
       {{ error }}
-      <button (click)="loadPosts()">Réessayer</button>
+      <button (click)="loadPostsAndUsers()">Réessayer</button>
     </div>
 
     <!-- Message si aucun post -->
@@ -35,7 +35,7 @@
       <app-post-item
         *ngFor="let post of posts"
         [post]="post"
-        [userImage]="getUserImage(post.userId)">
+        [userImage]="getUserImage(post.idUser)">
       </app-post-item>
     </div>
   </div>

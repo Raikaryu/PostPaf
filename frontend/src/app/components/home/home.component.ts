@@ -46,6 +46,8 @@ export class HomeComponent implements OnInit {
     }).subscribe({
       next: (result) => {
         console.log('Posts récupérés:', result.posts);
+        // Dans votre HomeComponent, après avoir récupéré les posts
+console.log('Posts avec leurs userId:', this.posts.map(post => ({ id: post.id, userId: post.userId })));
         console.log('Utilisateurs récupérés:', result.users);
         this.posts = result.posts;
         this.users = result.users;
@@ -81,9 +83,15 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-
-  getUserImage(userId: number): string {
-    const user = this.users.find(u => u.id === userId);
-    return user?.profileImage || 'assets/default-profile.jpg';
+  getUserImage(idUser: number): string {
+    if (!idUser) {
+      console.warn('ID utilisateur non défini pour un post');
+      return 'assets/default-profile.jpg';
+    }
+    const user = this.users.find(u => u.id === idUser);
+    if (!user) {
+      console.warn(`Aucun utilisateur trouvé avec l'ID ${idUser}`);
+    }
+    return user?.image || 'assets/default-profile.jpg';
   }
 }
