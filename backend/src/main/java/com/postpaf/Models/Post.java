@@ -3,7 +3,6 @@ package com.postpaf.Models;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-
 @Entity
 @Table(name = "Post")
 public class Post {
@@ -88,6 +87,11 @@ public class Post {
         this.creationDate = creationDate;
     }
 
+    // Getter personnalisé pour userPseudo
+    public String getUserPseudo() {
+        return user != null ? user.getPseudo() : null;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -96,6 +100,7 @@ public class Post {
                 ", title='" + title + '\'' +
                 ", contenu='" + contenu + '\'' +
                 ", creationDate=" + creationDate +
+                ", userPseudo='" + getUserPseudo() + '\'' +
                 '}';
     }
 }

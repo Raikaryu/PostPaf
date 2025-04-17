@@ -4,7 +4,7 @@
     <div class="search-bar">
       <input
         type="text"
-        placeholder="search bar"
+        placeholder="Rechercher des posts"
         [(ngModel)]="searchTerm"
         (keyup.enter)="search()">
       <button class="search-button" (click)="search()">
@@ -14,10 +14,30 @@
   </div>
 
   <div class="posts-container">
-    <app-post-item
-      *ngFor="let post of posts"
-      [post]="post">
-    </app-post-item>
+    <!-- Indicateur de chargement -->
+    <div *ngIf="isLoading" class="loading-indicator">
+      Chargement des posts...
+    </div>
+
+    <!-- Message d'erreur -->
+    <div *ngIf="error && !isLoading" class="error-message">
+      {{ error }}
+      <button (click)="loadPosts()">Réessayer</button>
+    </div>
+
+    <!-- Message si aucun post -->
+    <div *ngIf="!isLoading && !error && (!posts || posts.length === 0)" class="empty-state">
+      Aucun post à afficher.
+    </div>
+
+    <!-- Liste des posts -->
+    <div *ngIf="posts && posts.length > 0" class="posts-list">
+      <app-post-item
+        *ngFor="let post of posts"
+        [post]="post"
+        [userImage]="getUserImage(post.userId)">
+      </app-post-item>
+    </div>
   </div>
 </div>
 

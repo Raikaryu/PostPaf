@@ -1,0 +1,56 @@
+/* CSS de la home page */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-bottom: 60px;
+  background-color: #F0F4F8; /* Fond bleu très pâle */
+}
+
+.header {
+  padding: 15px;
+  border-bottom: 1px solid #D1DCE8; /* Version plus douce pour le séparateur */
+}
+
+.header h1 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #1A365D; /* Bleu foncé pour le contraste */
+}
+
+.search-bar {
+  display: flex;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid #D1DCE8; /* Bordure plus douce */
+  outline: none;
+  width: 100%;
+  background-color: #FFFFFF; /* Fond blanc */
+  color: #1A365D; /* Texte en bleu foncé */
+}
+
+.search-bar .search-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #3182CE; /* Bouton en bleu plus vif */
+}
+
+.posts-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #F0F4F8; /* Fond bleu très pâle */
+}
+
