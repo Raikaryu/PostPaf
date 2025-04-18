@@ -8,6 +8,7 @@ import { PostItemComponent } from './components/post-item/post-item.component';
 import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { AppRoutingModule } from './app.routes';
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AppRoutingModule } from './app.routes';
     PostItemComponent,
     BottomNavComponent,
     RegisterComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,
