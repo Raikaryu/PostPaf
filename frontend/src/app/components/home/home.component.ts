@@ -46,8 +46,7 @@ export class HomeComponent implements OnInit {
     }).subscribe({
       next: (result) => {
         console.log('Posts récupérés:', result.posts);
-        // Dans votre HomeComponent, après avoir récupéré les posts
-console.log('Posts avec leurs userId:', this.posts.map(post => ({ id: post.id, userId: post.userId })));
+        console.log('Posts avec leurs userId:', this.posts.map(post => ({ id: post.id, userId: post.userId })));
         console.log('Utilisateurs récupérés:', result.users);
         this.posts = result.posts;
         this.users = result.users;

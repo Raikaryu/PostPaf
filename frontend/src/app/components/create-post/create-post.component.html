@@ -1,0 +1,7 @@
+<form (ngSubmit)="onSubmit()">
+    <input type="text" [(ngModel)]="post.title" name="title" placeholder="Title" required>
+    <input type="text" [(ngModel)]="post.userPseudo" name="userPseudo" placeholder="User Pseudo" required>
+    <textarea [(ngModel)]="post.contenu" name="contenu" placeholder="Content" required></textarea>
+    <button type="submit">Post</button>
+  </form>
+  

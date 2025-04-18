@@ -1,0 +1,9 @@
+<form (ngSubmit)="onSubmit()">
+    <input type="text" [(ngModel)]="user.pseudo" name="pseudo" placeholder="Pseudo" required>
+    <input type="email" [(ngModel)]="user.email" name="email" placeholder="Email" required>
+    <textarea [(ngModel)]="user.bio" name="bio" placeholder="Biographie" required></textarea>
+    <input type="url" [(ngModel)]="user.imageUrl" name="imageUrl" placeholder="URL de l'image" required>
+    <input type="password" [(ngModel)]="user.password" name="password" placeholder="Password" required>
+    <button type="submit">Register</button>
+  </form>
+  
