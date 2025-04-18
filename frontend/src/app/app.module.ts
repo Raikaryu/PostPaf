@@ -9,7 +9,6 @@ import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component
 import { RegisterComponent } from './components/register/register.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { AppRoutingModule } from './app.routes';
-
 @NgModule({
   declarations: [
     AppComponent,

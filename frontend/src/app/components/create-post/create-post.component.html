@@ -1,5 +1,8 @@
 <div class="create-post-container">
   <h2>Créer un nouveau post</h2>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
   <form (ngSubmit)="onSubmit()" class="create-post-form">
     <div class="form-group">
       <label for="title">Titre</label>
@@ -16,6 +19,8 @@
       <textarea id="contenu" [(ngModel)]="post.contenu" name="contenu" placeholder="Écrivez votre message ici..." rows="6" required></textarea>
     </div>
     
-    <button type="submit" class="submit-btn">Poster</button>
+    <button type="submit" class="submit-btn" [disabled]="isSubmitting">
+      {{ isSubmitting ? 'Envoi en cours...' : 'Poster' }}
+    </button>
   </form>
 </div>

@@ -21,7 +21,7 @@ public class Post {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "contenu", nullable = false)
+    @Column(name = "contenu", nullable = false, columnDefinition = "TEXT")
     private String contenu;
 
     @Column(name = "creationdate", nullable = false)
