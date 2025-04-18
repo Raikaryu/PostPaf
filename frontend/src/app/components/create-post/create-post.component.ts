@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // Ajoutez cette ligne
+import { CommonModule } from '@angular/common';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post.model';
 import { Router } from '@angular/router'; // Importez Router pour la redirection
@@ -6,7 +8,8 @@ import { Router } from '@angular/router'; // Importez Router pour la redirection
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
-  styleUrls: ['./create-post.component.css']
+  styleUrls: ['./create-post.component.css'],
+  imports: [FormsModule, CommonModule]
 })
 export class CreatePostComponent {
   post: Post = {

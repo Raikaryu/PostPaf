@@ -1,9 +1,31 @@
-<form (ngSubmit)="onSubmit()">
-    <input type="text" [(ngModel)]="user.pseudo" name="pseudo" placeholder="Pseudo" required>
-    <input type="email" [(ngModel)]="user.email" name="email" placeholder="Email" required>
-    <textarea [(ngModel)]="user.bio" name="bio" placeholder="Biographie" required></textarea>
-    <input type="url" [(ngModel)]="user.imageUrl" name="imageUrl" placeholder="URL de l'image" required>
-    <input type="password" [(ngModel)]="user.password" name="password" placeholder="Password" required>
-    <button type="submit">Register</button>
+<div class="register-container">
+  <h2>Inscription</h2>
+  <form (ngSubmit)="onSubmit()" class="register-form">
+    <div class="form-group">
+      <label for="pseudo">Pseudo</label>
+      <input type="text" id="pseudo" [(ngModel)]="user.pseudo" name="pseudo" placeholder="Votre pseudo" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" [(ngModel)]="user.email" name="email" placeholder="Votre email" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="bio">Biographie</label>
+      <textarea id="bio" [(ngModel)]="user.bio" name="bio" placeholder="Parlez-nous de vous" rows="4" required></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="imageUrl">URL de l'image de profil</label>
+      <input type="url" id="imageUrl" [(ngModel)]="user.imageUrl" name="imageUrl" placeholder="https://..." required>
+    </div>
+    
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" [(ngModel)]="user.password" name="password" placeholder="Votre mot de passe" required>
+    </div>
+    
+    <button type="submit" class="submit-btn">S'inscrire</button>
   </form>
-  
+</div>
