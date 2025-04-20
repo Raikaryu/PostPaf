@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class UserDTO {
 
-    private Integer id;
+    private Long id;
     private String pseudo;
     private String email;
     private String bio;
@@ -110,11 +110,11 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
