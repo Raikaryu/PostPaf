@@ -16,6 +16,13 @@
         <i class="fa fa-times"></i>
       </button>
     </div>
+    <div class="sort-bar">
+      <button class="sort-button" (click)="sortByDate()">
+        Trier par date
+        <i class="fa" [ngClass]="sortAscending ? 'fa-arrow-up' : 'fa-arrow-down'"></i>
+      </button>
+    </div>
+    
   </div>
 
   <div class="posts-container">

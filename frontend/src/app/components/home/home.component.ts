@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   searchTerm: string = '';
   isLoading: boolean = false;
   error: string | null = null;
+  sortAscending: boolean = false; // false = du plus récent au plus ancien
 
   constructor(
     private postService: PostService,
@@ -88,10 +89,21 @@ export class HomeComponent implements OnInit {
     const user = this.users.find(u => u.id === idUser);
     return user?.image || 'assets/default-profile.jpg';
   }
-  
+
   clearSearch(): void {
     this.searchTerm = '';
     this.posts = this.allPosts;
+  }
+  
+  sortByDate(): void {
+    this.sortAscending = !this.sortAscending; // Inverser le sens à chaque clic
+  
+    this.posts.sort((a, b) => {
+      const dateA = new Date(a.creationDate).getTime();
+      const dateB = new Date(b.creationDate).getTime();
+  
+      return this.sortAscending ? dateA - dateB : dateB - dateA;
+    });
   }
   
 }
