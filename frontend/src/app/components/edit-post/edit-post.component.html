@@ -1,0 +1,26 @@
+<div class="create-post-container">
+  <h2>Modifier le post</h2>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <form (ngSubmit)="onSubmit()" class="create-post-form">
+    <div class="form-group">
+      <label for="title">Titre</label>
+      <input type="text" id="title" [(ngModel)]="post.title" name="title" placeholder="Titre du post" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="userPseudo">Pseudo</label>
+      <input type="text" id="userPseudo" [(ngModel)]="post.userPseudo" name="userPseudo" placeholder="Votre pseudo" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="contenu">Contenu</label>
+      <textarea id="contenu" [(ngModel)]="post.contenu" name="contenu" placeholder="Écrivez votre message ici..." rows="6" required></textarea>
+    </div>
+    
+    <button type="submit" class="submit-btn" [disabled]="isSubmitting">
+      {{ isSubmitting ? 'Envoi en cours...' : 'Mettre à jour' }}
+    </button>
+  </form>
+</div>
