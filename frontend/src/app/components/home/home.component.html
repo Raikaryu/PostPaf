@@ -6,9 +6,14 @@
         type="text"
         placeholder="Rechercher des posts"
         [(ngModel)]="searchTerm"
-        (keyup.enter)="search()">
+        (keyup.enter)="search()"
+      />
       <button class="search-button" (click)="search()">
         <i class="fa fa-search"></i>
+      </button>
+      <!-- Bouton Effacer -->
+      <button class="clear-button" *ngIf="searchTerm" (click)="clearSearch()">
+        <i class="fa fa-times"></i>
       </button>
     </div>
   </div>
@@ -26,7 +31,10 @@
     </div>
 
     <!-- Message si aucun post -->
-    <div *ngIf="!isLoading && !error && (!posts || posts.length === 0)" class="empty-state">
+    <div
+      *ngIf="!isLoading && !error && (!posts || posts.length === 0)"
+      class="empty-state"
+    >
       Aucun post à afficher.
     </div>
 
@@ -35,7 +43,8 @@
       <app-post-item
         *ngFor="let post of posts"
         [post]="post"
-        [userImage]="getUserImage(post.idUser)">
+        [userImage]="getUserImage(post.idUser)"
+      >
       </app-post-item>
     </div>
   </div>

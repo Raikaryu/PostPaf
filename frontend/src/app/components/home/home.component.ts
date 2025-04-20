@@ -21,6 +21,7 @@ import { forkJoin } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   posts: any[] = [];
+  allPosts: any[] = []; // pour stocker tous les posts d'origine
   users: any[] = [];
   searchTerm: string = '';
   isLoading: boolean = false;
@@ -38,16 +39,13 @@ export class HomeComponent implements OnInit {
   loadPostsAndUsers(): void {
     this.isLoading = true;
     this.error = null;
-    
-    // Récupérer les posts et les utilisateurs en parallèle
+
     forkJoin({
       posts: this.postService.getPosts(),
       users: this.userService.getUsers()
     }).subscribe({
       next: (result) => {
-        console.log('Posts récupérés:', result.posts);
-        console.log('Posts avec leurs userId:', this.posts.map(post => ({ id: post.id, userId: post.userId })));
-        console.log('Utilisateurs récupérés:', result.users);
+        this.allPosts = result.posts; // garder les posts d'origine
         this.posts = result.posts;
         this.users = result.users;
         this.isLoading = false;
@@ -62,35 +60,38 @@ export class HomeComponent implements OnInit {
 
   search(): void {
     if (!this.searchTerm.trim()) {
-      this.loadPostsAndUsers();
+      this.posts = this.allPosts; // reset si champ vide
       return;
     }
 
-    this.isLoading = true;
-    this.error = null;
-    
-    // Rechercher des posts tout en gardant les utilisateurs déjà chargés
-    this.postService.searchPosts(this.searchTerm).subscribe({
-      next: (data) => {
-        this.posts = data;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error('Erreur lors de la recherche:', err);
-        this.error = 'Erreur lors de la recherche. Veuillez réessayer.';
-        this.isLoading = false;
-      }
+    this.filterPosts();
+  }
+
+  filterPosts(): void {
+    const term = this.searchTerm.toLowerCase();
+  
+    this.posts = this.allPosts.filter(post => {
+      const title = post?.title?.toLowerCase() ?? '';
+      const contenu = post?.contenu?.toLowerCase() ?? '';
+      const authorPseudo = post?.userPseudo?.toLowerCase() ?? '';
+  
+      return (
+        title.includes(term) ||
+        contenu.includes(term) ||
+        authorPseudo.includes(term)
+      );
     });
   }
+
   getUserImage(idUser: number): string {
-    if (!idUser) {
-      console.warn('ID utilisateur non défini pour un post');
-      return 'assets/default-profile.jpg';
-    }
+    if (!idUser) return 'assets/default-profile.jpg';
     const user = this.users.find(u => u.id === idUser);
-    if (!user) {
-      console.warn(`Aucun utilisateur trouvé avec l'ID ${idUser}`);
-    }
     return user?.image || 'assets/default-profile.jpg';
   }
+  
+  clearSearch(): void {
+    this.searchTerm = '';
+    this.posts = this.allPosts;
+  }
+  
 }

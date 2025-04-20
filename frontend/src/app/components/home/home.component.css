@@ -38,13 +38,24 @@
 
 .search-bar .search-button {
   position: absolute;
-  right: 10px;
+  right: 40px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
   color: #3182CE; /* Bouton en bleu plus vif */
+}
+.clear-button {
+  position: absolute;
+  right: 10px; /* espace entre la loupe et le X */
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #E53E3E; /* rouge doux */
+  font-size: 1rem;
 }
 
 .posts-container {
