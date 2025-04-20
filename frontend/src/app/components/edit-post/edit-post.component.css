@@ -1,44 +1,96 @@
-.edit-post-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.create-post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.create-post-form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background-color: #3a7bc8;
+}
+
+.submit-btn:disabled {
+  background-color: #a0c0e7;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #e74c3c;
+  background-color: #fadbd8;
+  padding: 0.8rem;
+  border-radius: 5px;
+  margin-bottom: 1.2rem;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .create-post-container {
+    padding: 1.5rem;
+    margin: 1rem;
+    width: calc(100% - 2rem);
   }
-  
-  .edit-post-form .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .edit-post-form label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .edit-post-form input,
-  .edit-post-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .edit-post-form .submit-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .edit-post-form .submit-btn:disabled {
-    background-color: #ccc;
-  }
-  
-  .error-message {
-    color: red;
-    margin-bottom: 15px;
-  }
-  
+}
