@@ -34,8 +34,8 @@ export class CreatePostComponent {
     }
 
     // Vérification de la longueur du contenu
-    if (this.post.contenu.length > 255) {
-      this.errorMessage = 'Le contenu ne doit pas dépasser 255 caractères.';
+    if (this.post.contenu.length > 500) {
+      this.errorMessage = 'Le contenu ne doit pas dépasser 500 caractères.';
       return;
     }
 
