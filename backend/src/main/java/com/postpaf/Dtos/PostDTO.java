@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 
 public class PostDTO {
 
-    private Integer id;
-    private Integer idUser;
+    private Long id;
+    private Long idUser;
     private String userPseudo;
     private String title;
     private String contenu;
@@ -13,18 +13,18 @@ public class PostDTO {
 
     // Constructeur pour la création
     public static class PostCreateDTO {
-        private Integer idUser;
+        private Long idUser;
         private String title;
         private String contenu;
 
         public PostCreateDTO() {
         }
 
-        public Integer getIdUser() {
+        public Long getIdUser() {
             return idUser;
         }
 
-        public void setIdUser(Integer idUser) {
+        public void setIdUser(Long idUser) {
             this.idUser = idUser;
         }
 
@@ -74,19 +74,19 @@ public class PostDTO {
     public PostDTO() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getIdUser() {
+    public Long getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Integer idUser) {
+    public void setIdUser(Long idUser) {
         this.idUser = idUser;
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    List<Post> findByIdUser(Integer idUser);
+    List<Post> findByIdUser(Long idUser);
 
     List<Post> findByTitleContainingIgnoreCase(String keyword);
 }
