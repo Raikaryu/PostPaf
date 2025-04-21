@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { Post } from '../../models/post.model';
@@ -10,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-edit-post',
   templateUrl: './edit-post.component.html',
   styleUrls: ['./edit-post.component.css'],
-  imports: [FormsModule]
+  imports: [FormsModule, NgIf]
 })
 export class EditPostComponent implements OnInit {
   post: Post = {

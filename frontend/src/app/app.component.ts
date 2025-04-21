@@ -13,8 +13,6 @@ import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component
   imports: [
     CommonModule,
     RouterOutlet,
-    HomeComponent,
-    PostItemComponent,
     BottomNavComponent
   ]
 })

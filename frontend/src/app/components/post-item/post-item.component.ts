@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../../models/post.model';
-import { DatePipe, NgIf } from '@angular/common';
+import { DatePipe} from '@angular/common';
 import { PostService } from '../../services/post.service';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   selector: 'app-post-item',
   templateUrl: './post-item.component.html',
   styleUrls: ['./post-item.component.css'],
-  imports: [DatePipe, NgIf]
+  imports: [DatePipe]
 })
 export class PostItemComponent implements OnInit {
   @Input() post!: Post;
