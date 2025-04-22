@@ -12,7 +12,16 @@
   align-items: center;
   margin-bottom: 12px;
 }
+.logo-link {
+  text-decoration: none;
+  display: block;
+}
 
+.logo-image {
+  height: 5px; /* Ajustez cette valeur selon la taille souhaitée */
+  width: auto;
+  cursor: pointer;
+}
 .author-photo {
   width: 40px;
   height: 40px;
