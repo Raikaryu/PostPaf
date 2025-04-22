@@ -36,7 +36,7 @@ public class PostService {
                 .map(this::convertToDto);
     }
 
-    public List<PostDTO> getPostsByUserId(Integer userId) {
+    public List<PostDTO> getPostsByUserId(Long userId) {
         return postRepository.findByIdUser(userId).stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());

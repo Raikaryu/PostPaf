@@ -1,0 +1,15 @@
+<div class="post-card">
+  <div class="post-header">
+    <img [src]="userImage" alt="Photo Author" class="author-photo">
+    <div class="post-author">{{ post.userPseudo }}</div>
+  </div>
+  <div class="post-title-container">
+    <div class="post-title">{{ post.title }}</div>
+    <button (click)="editPost()" class="edit-btn">Modifier</button>
+  </div>
+  <div class="post-content-container">
+    <div class="post-content">{{ post.contenu }}</div>
+    <button (click)="deletePost()" class="delete-btn">Supprimer</button>
+  </div>
+  <div class="post-date">{{ post.creationDate | date:'medium' }}</div>
+</div>

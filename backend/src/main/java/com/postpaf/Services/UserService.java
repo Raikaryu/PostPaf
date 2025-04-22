@@ -28,7 +28,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public Optional<UserDTO> getUserById(Integer id) {
+    public Optional<UserDTO> getUserById(Long id) {
         return userRepository.findById(id)
                 .map(this::convertToDto);
     }
@@ -64,7 +64,7 @@ public class UserService {
         return convertToDto(savedUser);
     }
 
-    public Optional<UserDTO> updateUser(Integer id, UserDTO.UserUpdateDTO userUpdateDTO) {
+    public Optional<UserDTO> updateUser(Long id, UserDTO.UserUpdateDTO userUpdateDTO) {
         return userRepository.findById(id)
                 .map(user -> {
                     // Vérifier si le nouvel email existe déjà pour un autre utilisateur
@@ -100,7 +100,7 @@ public class UserService {
                 });
     }
 
-    public boolean deleteUser(Integer id) {
+    public boolean deleteUser(Long id) {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
             return true;

@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(
-        origins = "http://localhost:8081",
+        origins = "http://localhost:4200",
         allowedHeaders = "*",
         methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.PATCH, RequestMethod.DELETE, RequestMethod.OPTIONS}
 )
@@ -39,7 +39,7 @@ public class PostController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<PostDTO>> getPostsByUserId(@PathVariable Integer userId) {
+    public ResponseEntity<List<PostDTO>> getPostsByUserId(@PathVariable Long userId) {
         List<PostDTO> posts = postService.getPostsByUserId(userId);
         return ResponseEntity.ok(posts);
     }

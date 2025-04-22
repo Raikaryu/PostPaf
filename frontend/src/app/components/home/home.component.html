@@ -1,0 +1,60 @@
+<div class="home-container">
+  <div class="header">
+    <h1>PostPaf</h1>
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Rechercher des posts"
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="search()"
+      />
+      <button class="search-button" (click)="search()">
+        <i class="fa fa-search"></i>
+      </button>
+      <!-- Bouton Effacer -->
+      <button class="clear-button" *ngIf="searchTerm" (click)="clearSearch()">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+    <div class="sort-bar">
+      <button class="sort-button" (click)="sortByDate()">
+        Trier par date
+        <i class="fa" [ngClass]="sortAscending ? 'fa-arrow-up' : 'fa-arrow-down'"></i>
+      </button>
+    </div>
+    
+  </div>
+
+  <div class="posts-container">
+    <!-- Indicateur de chargement -->
+    <div *ngIf="isLoading" class="loading-indicator">
+      Chargement des posts...
+    </div>
+
+    <!-- Message d'erreur -->
+    <div *ngIf="error && !isLoading" class="error-message">
+      {{ error }}
+      <button (click)="loadPostsAndUsers()">Réessayer</button>
+    </div>
+
+    <!-- Message si aucun post -->
+    <div
+      *ngIf="!isLoading && !error && (!posts || posts.length === 0)"
+      class="empty-state"
+    >
+      Aucun post à afficher.
+    </div>
+
+    <!-- Liste des posts -->
+    <div *ngIf="posts && posts.length > 0" class="posts-list">
+      <app-post-item
+        *ngFor="let post of posts"
+        [post]="post"
+        [userImage]="getUserImage(post.idUser)"
+      >
+      </app-post-item>
+    </div>
+  </div>
+</div>
+
+<app-bottom-nav></app-bottom-nav>

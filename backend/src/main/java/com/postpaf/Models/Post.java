@@ -3,17 +3,16 @@ package com.postpaf.Models;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-
 @Entity
 @Table(name = "Post")
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "id_user", nullable = false)
-    private Integer idUser;
+    private Long idUser;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user", insertable = false, updatable = false)
@@ -22,7 +21,7 @@ public class Post {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "contenu", nullable = false)
+    @Column(name = "contenu", nullable = false, columnDefinition = "TEXT")
     private String contenu;
 
     @Column(name = "creationdate", nullable = false)
@@ -32,7 +31,7 @@ public class Post {
     public Post() {
     }
 
-    public Post(Integer idUser, String title, String contenu) {
+    public Post(Long idUser, String title, String contenu) {
         this.idUser = idUser;
         this.title = title;
         this.contenu = contenu;
@@ -40,19 +39,19 @@ public class Post {
     }
 
     // Getters et Setters
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getIdUser() {
+    public Long getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Integer idUser) {
+    public void setIdUser(Long idUser) {
         this.idUser = idUser;
     }
 
@@ -88,6 +87,11 @@ public class Post {
         this.creationDate = creationDate;
     }
 
+    // Getter personnalisé pour userPseudo
+    public String getUserPseudo() {
+        return user != null ? user.getPseudo() : null;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -96,6 +100,7 @@ public class Post {
                 ", title='" + title + '\'' +
                 ", contenu='" + contenu + '\'' +
                 ", creationDate=" + creationDate +
+                ", userPseudo='" + getUserPseudo() + '\'' +
                 '}';
     }
 }
