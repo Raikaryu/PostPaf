@@ -29,7 +29,7 @@ export class CreatePostComponent {
   onSubmit() {
     // Vérification des champs obligatoires
     if (!this.post.title || !this.post.userPseudo || !this.post.contenu) {
-      this.errorMessage = 'Veuillez remplir tous les champs obligatoires';
+      this.errorMessage = 'Tous les champs sont obligatoires';
       return;
     }
 
