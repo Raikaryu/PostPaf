@@ -7,22 +7,36 @@
   background-color: #F0F4F8; /* Fond bleu très pâle */
 }
 
+/* Ajoutez ces styles à votre fichier CSS */
 .header {
-  padding: 15px;
-  border-bottom: 1px solid #D1DCE8; /* Version plus douce pour le séparateur */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre les éléments horizontalement */
+  padding: 12px;
+  border-bottom: 1px solid #D1DCE8;
 }
 
-.header h1 {
-  text-align: center;
-  margin-bottom: 15px;
-  font-size: 1.5rem;
-  color: #1A365D; /* Bleu foncé pour le contraste */
+.logo-link {
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center; /* Centre le logo dans son conteneur */
+  width: 100%; /* Prend toute la largeur disponible */
 }
 
+.logo-image {
+  height: 70px;
+  width: 150px;
+  max-width: 200px; /* Limite la largeur maximale */
+  border-radius: 40px;
+}
+
+/* Déplacé en dehors de la media query pour être appliqué sur tous les écrans */
 .search-bar {
   display: flex;
   position: relative;
   margin-bottom: 10px;
+  width: 90%; /* Largeur pour mobile */
 }
 
 .search-bar input {
@@ -46,6 +60,7 @@
   cursor: pointer;
   color: #3182CE; /* Bouton en bleu plus vif */
 }
+
 .clear-button {
   position: absolute;
   right: 10px; /* espace entre la loupe et le X */
@@ -63,6 +78,7 @@
   justify-content: flex-end;
   padding: 0 15px;
   margin-bottom: 10px;
+  width: 90%; /* Cohérent avec la largeur de la barre de recherche */
 }
 
 .sort-button {
@@ -89,3 +105,24 @@
   background-color: #F0F4F8; /* Fond bleu très pâle */
 }
 
+/* Media queries pour les écrans plus grands */
+@media (min-width: 768px) {
+  .header {
+    flex-direction: column; /* Garde la disposition en colonne même sur grand écran */
+  }
+  
+  .logo-image {
+    height: 100px; /* Légèrement plus grand sur desktop */
+    width: 200px;
+  }
+  
+  .search-bar {
+    width: 70%; /* Barre de recherche plus large mais pas à 100% */
+    max-width: 500px; /* Limite la largeur maximale */
+  }
+  
+  .sort-bar {
+    width: 70%;
+    max-width: 500px;
+  }
+}
