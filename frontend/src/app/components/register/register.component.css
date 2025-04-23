@@ -4,6 +4,7 @@
   align-items: center;
   max-width: 500px;
   margin: 2rem auto;
+  margin-bottom: 5rem;
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -88,6 +89,7 @@ textarea {
   .register-container {
     padding: 1.5rem;
     margin: 1rem;
+    margin-bottom: 5rem;
     width: calc(100% - 2rem);
   }
 }

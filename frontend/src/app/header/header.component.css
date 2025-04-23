@@ -24,6 +24,7 @@
   width: 150px;
   max-width: 200px; /* Limite la largeur maximale */
   border-radius: 40px;
+  cursor: pointer;
 }
 
 /* Media queries pour les écrans plus grands */
