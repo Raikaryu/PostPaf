@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { AppRoutingModule } from './app.routes';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { AppRoutingModule } from './app.routes';
     BottomNavComponent,
     RegisterComponent,
     CreatePostComponent,
-    EditPostComponent
+    EditPostComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

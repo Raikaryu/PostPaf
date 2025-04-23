@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
 import { PostItemComponent } from './components/post-item/post-item.component';
 import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   standalone: true,
@@ -12,6 +13,7 @@ import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component
   styleUrls: ['./app.component.css'],
   imports: [
     CommonModule,
+    HeaderComponent,
     RouterOutlet,
     BottomNavComponent
   ]
