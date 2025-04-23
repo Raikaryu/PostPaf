@@ -4,6 +4,9 @@ import com.postpaf.Dtos.UserDTO;
 import com.postpaf.Repositories.UserRepository;
 import com.postpaf.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import org.springframework.stereotype.Service;
 
@@ -12,16 +15,52 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
+    // Méthodes existantes...
+
+    public UserDTO createUser(UserDTO.UserCreateDTO userCreateDTO) {
+        // Vérifier si l'email ou le pseudo existe déjà
+        if (userRepository.existsByEmail(userCreateDTO.getEmail())) {
+            throw new IllegalArgumentException("Email déjà utilisé");
+        }
+        if (userRepository.existsByPseudo(userCreateDTO.getPseudo())) {
+            throw new IllegalArgumentException("Pseudo déjà utilisé");
+        }
+
+        User user = new User();
+        user.setPseudo(userCreateDTO.getPseudo());
+        user.setEmail(userCreateDTO.getEmail());
+        
+        // Hachage du mot de passe avant de l'enregistrer
+        user.setPassword(passwordEncoder.encode(userCreateDTO.getPassword()));
+        
+        user.setBio(userCreateDTO.getBio());
+        user.setImage(userCreateDTO.getImage());
+        user.setCreationDate(LocalDateTime.now());
+
+        User savedUser = userRepository.save(user);
+        return convertToDto(savedUser);
+    }
+
+    // Méthode utilitaire pour vérifier un mot de passe (à utiliser lors de l'authentification)
+    public boolean checkPassword(String rawPassword, String encodedPassword) {
+        return passwordEncoder.matches(rawPassword, encodedPassword);
+    }
+
+    // Autres méthodes existantes...
+    
     public List<UserDTO> getAllUsers() {
         return userRepository.findAll().stream()
                 .map(this::convertToDto)
@@ -41,27 +80,6 @@ public class UserService {
     public Optional<UserDTO> getUserByPseudo(String pseudo) {
         return userRepository.findByPseudo(pseudo)
                 .map(this::convertToDto);
-    }
-
-    public UserDTO createUser(UserDTO.UserCreateDTO userCreateDTO) {
-        // Vérifier si l'email ou le pseudo existe déjà
-        if (userRepository.existsByEmail(userCreateDTO.getEmail())) {
-            throw new IllegalArgumentException("Email déjà utilisé");
-        }
-        if (userRepository.existsByPseudo(userCreateDTO.getPseudo())) {
-            throw new IllegalArgumentException("Pseudo déjà utilisé");
-        }
-
-        User user = new User();
-        user.setPseudo(userCreateDTO.getPseudo());
-        user.setEmail(userCreateDTO.getEmail());
-        user.setPassword(userCreateDTO.getPassword()); // Stockage du mot de passe en texte brut
-        user.setBio(userCreateDTO.getBio());
-        user.setImage(userCreateDTO.getImage());
-        user.setCreationDate(LocalDateTime.now());
-
-        User savedUser = userRepository.save(user);
-        return convertToDto(savedUser);
     }
 
     public Optional<UserDTO> updateUser(Long id, UserDTO.UserUpdateDTO userUpdateDTO) {
@@ -93,6 +111,10 @@ public class UserService {
                     }
                     if (userUpdateDTO.getImage() != null) {
                         user.setImage(userUpdateDTO.getImage());
+                    }
+                    // Si le mot de passe est mis à jour
+                    if (userUpdateDTO.getPassword() != null && !userUpdateDTO.getPassword().isEmpty()) {
+                        user.setPassword(passwordEncoder.encode(userUpdateDTO.getPassword()));
                     }
 
                     User updatedUser = userRepository.save(user);

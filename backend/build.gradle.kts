@@ -29,6 +29,7 @@ dependencies {
     testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine")
     testImplementation ("org.mockito:mockito-junit-jupiter")
     testImplementation ("org.mockito:mockito-core")
+    implementation ("org.springframework.security:spring-security-crypto")
 }
 tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
     jvmArgs = listOf("--add-opens=java.base/java.io=ALL-UNNAMED")
