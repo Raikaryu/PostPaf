@@ -1,35 +1,39 @@
 /* Ajoutez ces styles à votre fichier CSS */
 .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centre les éléments horizontalement */
-    padding: 12px;
-    border-bottom: 1px solid #D1DCE8;
-  }
-  
-  .logo-link {
-    text-decoration: none;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center; /* Centre le logo dans son conteneur */
-    width: 100%; /* Prend toute la largeur disponible */
-  }
-  
-  .logo-image {
-    height: 70px;
-    width: 150px;
-    max-width: 200px; /* Limite la largeur maximale */
-    border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre les éléments horizontalement */
+  padding: 12px;
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+}
+
+.logo-link {
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center; /* Centre le logo dans son conteneur */
+  width: 100%; /* Prend toute la largeur disponible */
+}
+
+.logo-image {
+  height: 70px;
+  width: 150px;
+  max-width: 200px; /* Limite la largeur maximale */
+  border-radius: 40px;
+}
+
+/* Media queries pour les écrans plus grands */
+@media (min-width: 768px) {
+  .header {
+    flex-direction: column; /* Garde la disposition en colonne même sur grand écran */
   }
 
-  /* Media queries pour les écrans plus grands */
-@media (min-width: 768px) {
-    .header {
-      flex-direction: column; /* Garde la disposition en colonne même sur grand écran */
-    }
-    
-    .logo-image {
-      height: 100px; /* Légèrement plus grand sur desktop */
-      width: 200px;
-    }
-}    
+  .logo-image {
+    height: 100px; /* Légèrement plus grand sur desktop */
+    width: 200px;
+  }
+}
