@@ -33,4 +33,17 @@ export class UserService {
   getUserByPseudo(pseudo: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/pseudo/${pseudo}`);
   }
+  // Ajoutez ces méthodes à votre service utilisateur existant (user.service.ts)
+
+  login(email: string, password: string): Observable<User> {
+    return this.http.post<User>(`${this.apiUrl}/login`, { email, password }, { withCredentials: true });
+  }
+
+  logout(): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/logout`, {}, { withCredentials: true });
+  }
+
+  checkSession(): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/session`, { withCredentials: true });
+  }
 }

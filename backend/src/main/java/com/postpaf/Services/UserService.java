@@ -141,4 +141,11 @@ public class UserService {
         userDTO.setCreationDate(user.getCreationDate());
         return userDTO;
     }
+    // Ajoutez cette méthode à votre UserService.java existant
+
+    public Optional<UserDTO> authenticateUser(UserDTO.AuthenticationDTO authDTO) {
+        return userRepository.findByEmail(authDTO.getEmail())
+            .filter(user -> passwordEncoder.matches(authDTO.getPassword(), user.getPassword()))
+            .map(this::convertToDto);
+}
 }

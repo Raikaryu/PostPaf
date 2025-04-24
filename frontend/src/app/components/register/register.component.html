@@ -1,31 +1,60 @@
-<div class="register-container">
-  <h2>Inscription</h2>
-  <form (ngSubmit)="onSubmit()" class="register-form">
-    <div class="form-group">
-      <label for="pseudo">Pseudo</label>
-      <input type="text" id="pseudo" [(ngModel)]="user.pseudo" name="pseudo" placeholder="Votre pseudo" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" [(ngModel)]="user.email" name="email" placeholder="Votre email" required>
-    </div>
-    
-    <div class="form-group">
-      <label for="bio">Biographie</label>
-      <textarea id="bio" [(ngModel)]="user.bio" name="bio" placeholder="Parlez-nous de vous" rows="4" required></textarea>
-    </div>
-    
-    <div class="form-group">
-      <label for="imageUrl">URL de l'image de profil</label>
-      <input type="url" id="imageUrl" [(ngModel)]="user.image" name="imageUrl" placeholder="https://..." required>
-    </div>
-    
-    <div class="form-group">
-      <label for="password">Mot de passe</label>
-      <input type="password" id="password" [(ngModel)]="user.password" name="password" placeholder="Votre mot de passe" required>
-    </div>
-    
-    <button type="submit" class="submit-btn">S'inscrire</button>
-  </form>
+<div class="auth-container">
+  <!-- Formulaire d'inscription (déjà existant) -->
+  <div class="register-section">
+    <h2>Inscription</h2>
+    <form (ngSubmit)="onSubmit()" class="register-form">
+      <div class="form-group">
+        <label for="pseudo">Pseudo</label>
+        <input type="text" id="pseudo" [(ngModel)]="user.pseudo" name="pseudo" placeholder="Votre pseudo" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="user.email" name="email" placeholder="Votre email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="bio">Biographie</label>
+        <textarea id="bio" [(ngModel)]="user.bio" name="bio" placeholder="Parlez-nous de vous" rows="4" required></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="imageUrl">URL de l'image de profil</label>
+        <input type="url" id="imageUrl" [(ngModel)]="user.image" name="imageUrl" placeholder="https://..." required>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" [(ngModel)]="user.password" name="password" placeholder="Votre mot de passe" required>
+      </div>
+      
+      <button type="submit" class="submit-btn">S'inscrire</button>
+      
+      <div *ngIf="registerError" class="error-message">
+        {{ registerError }}
+      </div>
+    </form>
+  </div>
+  
+  <!-- Formulaire de connexion (nouveau) -->
+  <div class="login-section">
+    <h2>Connexion</h2>
+    <form (ngSubmit)="onLogin()" class="login-form">
+      <div class="form-group">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" [(ngModel)]="loginData.email" name="loginEmail" placeholder="Votre email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="loginPassword">Mot de passe</label>
+        <input type="password" id="loginPassword" [(ngModel)]="loginData.password" name="loginPassword" placeholder="Votre mot de passe" required>
+      </div>
+      
+      <button type="submit" class="submit-btn">Se connecter</button>
+      
+      <div *ngIf="loginError" class="error-message">
+        {{ loginError }}
+      </div>
+    </form>
+  </div>
 </div>
