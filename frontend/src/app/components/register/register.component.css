@@ -1,10 +1,14 @@
-.register-container {
+.auth-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 500px;
+  justify-content: space-between;
+  max-width: 1000px;
   margin: 2rem auto;
   margin-bottom: 5rem;
+  padding: 0 1rem;
+}
+
+.register-section, .login-section {
+  width: 48%;
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -86,10 +90,12 @@ textarea {
 
 
 @media (max-width: 600px) {
-  .register-container {
-    padding: 1.5rem;
-    margin: 1rem;
-    margin-bottom: 5rem;
-    width: calc(100% - 2rem);
+  .auth-container {
+    flex-direction: column;
+  }
+  
+  .register-section, .login-section {
+    width: 100%;
+    margin-bottom: 2rem;
   }
 }

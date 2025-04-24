@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http'; // Ajoutez cette ligne pour importer HttpClientModule
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { PostItemComponent } from './components/post-item/post-item.component';
@@ -11,6 +12,7 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { AppRoutingModule } from './app.routes';
 import { HeaderComponent } from './header/header.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,13 +22,15 @@ import { HeaderComponent } from './header/header.component';
     RegisterComponent,
     CreatePostComponent,
     EditPostComponent,
-    HeaderComponent
+    HeaderComponent,
+    
   ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule // Ajoutez cette ligne pour inclure HttpClientModule dans les imports
   ],
   providers: [],
   bootstrap: [AppComponent]
