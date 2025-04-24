@@ -81,4 +81,4 @@ nbdist/
 .vscode/
 
 ### config ###
-.env
+backend/src/main/ressources/.env
