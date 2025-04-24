@@ -12,7 +12,7 @@ import { Router } from '@angular/router'
   imports: [FormsModule, CommonModule]
 })
 export class RegisterComponent {
-  user: User = { id: 0, pseudo: '', email: '', bio: '', imageUrl: '', createdAt: new Date(), password: '' };
+  user: User = { id: 0, pseudo: '', email: '', bio: '', image: '', createdAt: new Date(), password: '' };
 
   constructor(private userService: UserService, private router: Router) {}
 

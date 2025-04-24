@@ -1,7 +1,9 @@
+// src/app/components/create-post/create-post.component.ts
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PostService } from '../../services/post.service';
+import { UserService } from '../../services/user.service';
 import { Post } from '../../models/post.model';
 import { Router } from '@angular/router';
 
@@ -14,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class CreatePostComponent {
   post: Post = {
-    idUser: 1, // Valeur temporaire - idéalement à récupérer d'un service d'authentification
+    idUser: 0, // Sera défini après la recherche de l'utilisateur
     userPseudo: '',
     title: '',
     contenu: '',
@@ -24,7 +26,11 @@ export class CreatePostComponent {
   errorMessage: string = '';
   isSubmitting: boolean = false;
 
-  constructor(private postService: PostService, private router: Router) {}
+  constructor(
+    private postService: PostService,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   onSubmit() {
     // Vérification des champs obligatoires
@@ -39,6 +45,22 @@ export class CreatePostComponent {
       return;
     }
 
+    // Rechercher l'utilisateur par son pseudo
+    this.userService.getUserByPseudo(this.post.userPseudo).subscribe({
+      next: (user) => {
+        console.log('Utilisateur trouvé:', user);
+        this.post.idUser = user.id;
+        this.submitPost();
+      },
+      error: (error) => {
+        console.error('Erreur lors de la recherche de l\'utilisateur:', error);
+        this.errorMessage = 'Pseudo utilisateur non trouvé';
+        this.isSubmitting = false;
+      }
+    });
+  }
+
+  submitPost() {
     this.isSubmitting = true;
     this.errorMessage = '';
 
@@ -56,8 +78,6 @@ export class CreatePostComponent {
 
         if (error.status === 401) {
           this.errorMessage = 'Vous devez être connecté pour créer un post';
-          // Redirection vers la page de connexion si nécessaire
-          // this.router.navigate(['/login']);
         } else if (error.status === 400) {
           this.errorMessage = 'Données invalides. Veuillez vérifier vos informations';
         } else {
