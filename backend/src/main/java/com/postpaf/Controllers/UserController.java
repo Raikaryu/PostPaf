@@ -1,7 +1,11 @@
 package com.postpaf.Controllers;
 
 import com.postpaf.Dtos.UserDTO;
+import com.postpaf.Dtos.UserDTO.AuthenticationDTO;
 import com.postpaf.Services.UserService;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +17,8 @@ import java.util.List;
 @CrossOrigin(
         origins = "http://localhost:4200",
         allowedHeaders = "*",
-        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.PATCH, RequestMethod.DELETE, RequestMethod.OPTIONS}
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.PATCH, RequestMethod.DELETE, RequestMethod.OPTIONS},
+        allowCredentials = "true"
 )
 @RequestMapping("/api/users")
 public class UserController {
@@ -80,4 +85,33 @@ public class UserController {
         }
         return ResponseEntity.notFound().build();
     }
+    // Ajoutez ces méthodes à votre UserController.java existant
+
+@PostMapping("/login")
+public ResponseEntity<?> login(@RequestBody AuthenticationDTO authDTO, HttpSession session) {
+    return userService.authenticateUser(authDTO)
+            .map(user -> {
+                session.setAttribute("userId", user.getId());
+                session.setAttribute("userEmail", user.getEmail());
+                return ResponseEntity.ok(user);
+            })
+            .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+}
+
+@PostMapping("/logout")
+public ResponseEntity<String> logout(HttpSession session) {
+    session.invalidate();
+    return ResponseEntity.ok("Déconnexion réussie");
+}
+
+@GetMapping("/session")
+public ResponseEntity<?> checkSession(HttpSession session) {
+    Long userId = (Long) session.getAttribute("userId");
+    if (userId != null) {
+        return userService.getUserById(userId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+    }
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Non connecté");
+}
 }
