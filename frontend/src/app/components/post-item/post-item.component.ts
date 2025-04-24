@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class PostItemComponent implements OnInit {
   @Input() post!: Post;
   @Input() userImage: string = 'assets/default-profile.jpg';
+  @Input() isOwner: boolean = false;
 
   constructor(private postService: PostService, private router: Router) {}
 

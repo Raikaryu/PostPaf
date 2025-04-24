@@ -30,6 +30,9 @@ export class UserService {
   register(user: User): Observable<User> {
     return this.http.post<User>(this.apiUrl, user);
   }
+  deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
   getUserByPseudo(pseudo: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/pseudo/${pseudo}`);
   }

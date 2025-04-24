@@ -1,0 +1,121 @@
+<!-- profile.component.html -->
+<div class="profile-container">
+  @if (isLoading) {
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Chargement du profil...</p>
+    </div>
+  }
+
+  @if (errorMessage) {
+    <div class="error-message">
+      {{ errorMessage }}
+    </div>
+  }
+
+  @if (successMessage) {
+    <div class="success-message">
+      {{ successMessage }}
+    </div>
+  }
+
+  @if (currentUser && !isLoading) {
+    <div class="profile-content">
+      <div class="profile-header">
+        <div class="profile-image">
+          <img [src]="currentUser?.image || 'assets/default-avatar.png'" alt="Photo de profil">
+        </div>
+        <div class="profile-info">
+          <h1>{{ currentUser?.pseudo }}</h1>
+        </div>
+        <button class="edit-button" (click)="toggleEditMode()">
+          {{ isEditing ? 'Annuler' : 'Modifier le profil' }}
+        </button>
+        <button class="delete-button" (click)="deleteProfile()">
+          Supprimer le profil
+        </button>
+      </div>
+
+      <div class="profile-body">
+        @if (!isEditing) {
+          <div class="profile-details">
+            <div class="detail-row">
+              <span class="label">Pseudo:</span>
+              <span class="value">{{ currentUser?.pseudo }}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Email:</span>
+              <span class="value">{{ currentUser?.email }}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Bio:</span>
+              <span class="value bio-text">{{ currentUser?.bio || 'Aucune bio renseignée' }}</span>
+            </div>
+          </div>
+        }
+
+        @if (isEditing) {
+          <form [formGroup]="profileForm" (ngSubmit)="submitForm()" class="edit-form">
+            <div class="form-group">
+              <label for="pseudo">Pseudo</label>
+              <input type="text" id="pseudo" formControlName="pseudo">
+              @if (profileForm.get('pseudo')?.invalid && profileForm.get('pseudo')?.touched) {
+                <div class="error-hint">
+                  Le pseudo est requis (3 caractères minimum)
+                </div>
+              }
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" formControlName="email">
+              @if (profileForm.get('email')?.invalid && profileForm.get('email')?.touched) {
+                <div class="error-hint">
+                  Email invalide
+                </div>
+              }
+            </div>
+
+            <div class="form-group">
+              <label for="bio">Bio</label>
+              <textarea id="bio" formControlName="bio" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="image">URL de l'image de profil</label>
+              <input type="text" id="image" formControlName="image">
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" [disabled]="profileForm.invalid">Enregistrer</button>
+            </div>
+          </form>
+        }
+      </div>
+
+      <div class="user-posts">
+        <h2>Mes publications ({{ userPosts.length }})</h2>
+        
+        @if (userPosts.length === 0) {
+          <div class="no-posts">
+            Vous n'avez pas encore publié de post.
+          </div>
+        }
+
+        @for (post of userPosts; track post.id) {
+          <div class="post-card">
+            <div class="post-header">
+              <h3>{{ post.title }}</h3>
+              <div class="post-actions">
+                <a class="edit-post-btn" [routerLink]="['/posts', post.id, 'edit']">Modifier</a>
+                <button class="delete-post-btn" (click)="deletePost(post.id)">Supprimer</button>
+              </div>
+            </div>
+            <div class="post-date">Publié le {{ formatDate(post.creationDate) }}</div>
+            <p class="post-content">{{ post.contenu }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

@@ -49,6 +49,7 @@
         *ngFor="let post of posts"
         [post]="post"
         [userImage]="getUserImage(post.idUser)"
+        [isOwner]="isPostOwner(post.idUser)"
       >
       </app-post-item>
     </div>
