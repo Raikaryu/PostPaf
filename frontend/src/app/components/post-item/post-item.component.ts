@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../../models/post.model';
-import { DatePipe} from '@angular/common';
+import { DatePipe, CommonModule } from '@angular/common';
 import { PostService } from '../../services/post.service';
 import { Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   selector: 'app-post-item',
   templateUrl: './post-item.component.html',
   styleUrls: ['./post-item.component.css'],
-  imports: [DatePipe]
+  imports: [DatePipe, CommonModule]
 })
 export class PostItemComponent implements OnInit {
   @Input() post!: Post;
@@ -18,7 +18,11 @@ export class PostItemComponent implements OnInit {
 
   constructor(private postService: PostService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  
+  console.log('Post ID:', this.post.id, 'isOwner:', this.isOwner);
+  
+  }
 
   editPost(): void {
     if (this.post.id !== undefined) {

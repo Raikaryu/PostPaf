@@ -44,15 +44,13 @@
     </div>
 
     <!-- Liste des posts -->
-    <div *ngIf="posts && posts.length > 0" class="posts-list">
-      <app-post-item
-        *ngFor="let post of posts"
-        [post]="post"
-        [userImage]="getUserImage(post.idUser)"
-        [isOwner]="isPostOwner(post.idUser)"
-      >
-      </app-post-item>
-    </div>
+    <app-post-item
+    *ngFor="let post of posts"
+    [post]="post"
+    [userImage]="getUserImage(post.idUser)"
+    [isOwner]="isPostOwner(post.idUser)"
+  >
+  </app-post-item>
 </div>
 
 <app-bottom-nav></app-bottom-nav>

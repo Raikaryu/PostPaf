@@ -107,7 +107,7 @@
             <div class="post-header">
               <h3>{{ post.title }}</h3>
               <div class="post-actions">
-                <a class="edit-post-btn" [routerLink]="['/posts', post.id, 'edit']">Modifier</a>
+                <button class="edit-post-btn" (click)="editPost(post.id)">Modifier</button>
                 <button class="delete-post-btn" (click)="deletePost(post.id)">Supprimer</button>
               </div>
             </div>

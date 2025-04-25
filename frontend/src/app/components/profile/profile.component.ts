@@ -4,7 +4,7 @@ import { User } from '../../models/user.model';
 import { Post } from '../../models/post.model';
 import { UserService } from '../../services/user.service';
 import { PostService } from '../../services/post.service';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe} from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router'; // Importer Router
 import { UserIdService } from '../../services/user-id.service';
@@ -160,5 +160,9 @@ export class ProfileComponent implements OnInit {
       hour: '2-digit',
       minute: '2-digit'
     });
+  }
+  
+  editPost(postId: number): void {
+    this.router.navigate(['/posts', postId, 'edit']);
   }
 }

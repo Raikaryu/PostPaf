@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUserId = this.userIdService.getUserId();
-    console.log("ID utilisateur connecté :", this.currentUserId);
+    console.log("ID utilisateur connecté :", this.currentUserId, "Type:", typeof this.currentUserId);
     this.loadPostsAndUsers();
   }
 
@@ -113,8 +113,9 @@ export class HomeComponent implements OnInit {
   }
 
   isPostOwner(postUserId: number): boolean {
-    console.log('Comparaison -> post.idUser:', postUserId, '=== currentUserId:', this.currentUserId);
-    return this.currentUserId === postUserId;
+    const currentId = Number(this.currentUserId);
+    const postId = Number(postUserId);
+    console.log('Comparaison -> post.idUser:', postId, '(type:', typeof postId, ') === currentUserId:', currentId, '(type:', typeof currentId, ')');
+    return currentId === postId;
   }
-  
 }
