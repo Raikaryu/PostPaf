@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PostItemComponent } from './components/post-item/post-item.component';
 import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component';
 import { HeaderComponent } from './header/header.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @Component({
   standalone: true,
@@ -15,7 +16,8 @@ import { HeaderComponent } from './header/header.component';
     CommonModule,
     HeaderComponent,
     RouterOutlet,
-    BottomNavComponent
+    BottomNavComponent,
+    ProfileComponent
   ]
 })
 export class AppComponent {
